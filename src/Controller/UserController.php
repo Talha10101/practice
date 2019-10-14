@@ -2,6 +2,7 @@
 
 
 namespace App\Controller;
+use App\Entity\Student;
 use Symfony\Component\HttpFoundation\Request;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -10,10 +11,20 @@ class UserController extends Controller
 
 {
 
-    public function number(Request $request)
+    public function studentRigAction(Request $request)
     {
+//        $form = $this->createForm(LeadChineseWebsiteLocalizationServiceFormType::class);
 
- return $this->render('');
+//        $task = new Student();
+//        var_dump($task);die;
+        // ...
+//
+//        $form = $this->createForm(TaskType::class, $task);
+//
+//        return $this->render('task/new.html.twig', [
+//            'form' => $form->createView(),
+//        ]);
     }
+
 
 }
