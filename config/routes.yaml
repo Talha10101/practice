@@ -5,3 +5,20 @@ app_lucky_number:
     path: /student-registration
     controller: App\Controller\UserController::studentRigAction
 
+#view_data:
+#    path: /student-login
+#    controller: App\Controller\UserController::viewUserDataAction
+login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+    methods: GET|POST
+
+dashboard:
+    path: /student-login/dashboard
+    controller:  App\Controller\UserController::viewUserDataAction
+#    methods: GET|POST
+
+login_student:
+    path: /student
+    controller: App\Controller\UserController::viewUserDataAction
+    methods: GET|POST

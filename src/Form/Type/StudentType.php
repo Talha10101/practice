@@ -2,6 +2,7 @@
 // src/Form/Type/TaskType.php
 namespace App\Form\Type;
 
+use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -18,8 +19,14 @@ class StudentType extends AbstractType
             ->add('name', TextType::class)
             ->add('email', EmailType::class)
             ->add('program', TextType::class)
-            ->add('phone', NumberType::class)
+            ->add('phone', NumberType::class )
             ->add('gender', TextType::class)
+
         ;
+    }
+
+    public function getBlockPrefix()
+    {
+        return parent::getBlockPrefix();
     }
 }
