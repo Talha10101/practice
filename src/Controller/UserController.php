@@ -8,6 +8,7 @@ use App\Form\AppStudentType;
 use App\Form\Type\StudentType;
 
 use App\Entity\Student;
+use App\Repository\StudentRepository;
 use FOS\UserBundle\Event\UserEvent;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Model\UserManager;
@@ -46,7 +47,18 @@ class UserController extends Controller
 
     public function viewUserDataAction(){
 
-        return $this->render('student/login.html.twig');
+
+        $user = $this->getDoctrine()->getManager()->getRepository( Student::class)->findStudent();
+//        var_dump($user);die;
+
+//        $arr=array();
+//
+//foreach ($user as $item)
+//{
+//    $arr = $item;
+
+//      }
+        return $this->render('student/login.html.twig',array('data'=>$user));
 
     }
 

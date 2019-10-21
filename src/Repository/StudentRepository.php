@@ -19,22 +19,27 @@ class StudentRepository extends ServiceEntityRepository
         parent::__construct($registry, Student::class);
     }
 
-    // /**
-    //  * @return Student[] Returns an array of Student objects
-    //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findStudent()
     {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('s.program','s.phone','s.age','s.gender','u.id','u.email','u.username')
+            ->from(Student::class, 's');
+        $qb->join('s.user ','u');
+//            ->('u on s.id=u.id');
+//            ->andWhere('A.type = :type')
+//            ->setParameter("token", $token)
+//            ->setParameter("type", $type);
+//        var_dump($qb->getQuery()->getResult());die;
+        $data = $qb->getQuery()->getResult();
+        if(!empty($data))
+        {
+            return $data[0];
+        }
+        else return null;
     }
-    */
+
+//
 
     /*
     public function findOneBySomeField($value): ?Student

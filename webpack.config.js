@@ -25,6 +25,7 @@ Encore
      */
     .addEntry('app', './public/assets/js/app.js')
     .addEntry('std', './public/assets/js/std.js')
+    .addEntry('student_background', './public/assets/js/student_background.js')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
 
