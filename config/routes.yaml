@@ -22,3 +22,8 @@ login_student:
     path: /student
     controller: App\Controller\UserController::viewUserDataAction
     methods: GET|POST
+
+update_student:
+    path: /update/stduent/{id}
+    controller:  App\Controller\UserController::updateStudent
+    methods: GET|POST

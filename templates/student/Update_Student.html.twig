@@ -1,0 +1,24 @@
+{#{{ dump(data) }}#}
+<div class="main-w3layouts wrapper">
+    <h1 class="std">student login </h1>
+    <div class="main-agileinfo std" >
+        <div class="agileits-top">
+            {#{{ form(form) }}#}
+
+            <h1>Edit your Profile ! ?</h1>
+            {{ form_start(student) }}
+            {{ form_widget(student.age ,{ 'attr': {'placeholder':'age ','class':'form-control'} })}}
+            {{ form_widget(student.gender,{ 'attr': {'placeholder':'Enter your Gender ','class':'form-control'} }) }}
+            {{ form_widget(student.program,{ 'attr': {'placeholder':'Enter your program ','class':'form-control'} }) }}
+            {#{{ form_widget(student.user.password,{ 'attr': {'placeholder':'Enter you phn number ','class':'form-control'} }) }}#}
+            {{ form_widget(student.phone,{ 'attr': {'placeholder':'Enter you phn number ','class':'form-control'} }) }}
+            {#{{ form_widget(student.user.email,{ 'attr': {'placeholder':'Enter you phn number ','class':'form-control'} }) }}#}
+            {#{{ form_widget(student.user.email,{ 'attr': {'placeholder':'Enter you phn number ','class':'form-control'} }) }}#}
+            <button type="submit" class="btn btn-primary">Update!</button>
+            {{ form_end(student) }}
+    </div>
+    <!-- copyright -->
+
+    <!-- //copyright -->
+
+</div>

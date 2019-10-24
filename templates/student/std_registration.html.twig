@@ -1,30 +1,38 @@
-<!--
-Author: Colorlib
-Author URL: https://colorlib.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>student Registration </title>
-    {% block stylesheets %}
-        {# 'app' must match the first argument to addEntry() in webpack.config.js #}
-        {{ encore_entry_link_tags('app') }}
 
-        <!-- Renders a link tag (if your module requires any CSS)
-             <link rel="stylesheet" href="/build/app.css"> -->
+<title>student Registration </title>
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+
+    <style>
+
+        .std{
+            width: fit-content;
+            margin-left: 600px;
+
+
+        }
+
+
+    </style>
     {% endblock %}
-</head>
 {% block body %}<!-- main -->
 <div class="main-w3layouts wrapper">
-    <h1>student login </h1>
-    <div class="main-agileinfo">
-        <div class="agileits-top">
+    <h1 class="std">student login </h1>
+    <div class="main-agileinfo std" >
+        <div class="agileits-top" style="width: 50%;">
             {#{{ form(form) }}#}
 
             {{ form_start(form, {'method': 'post'}) }}
+            {#{{ form_start(student) }}#}
+            {{ form_widget(form.user.username,{ 'attr': {'placeholder':'Enter you username ','class':'form-control'} }) }}
+            {{ form_widget(form.user.email,{ 'attr': {'placeholder':'Enter you email ','class':'form-control'} }) }}
 
+            {{ form_widget(form.age ,{ 'attr': {'placeholder':'age ','class':'form-control'} })}}
+            {{ form_widget(form.gender,{ 'attr': {'placeholder':'Enter your Gender ','class':'form-control'} }) }}
+            {{ form_widget(form.program,{ 'attr': {'placeholder':'Enter your program ','class':'form-control'} }) }}
+            {{ form_widget(form.phone,{ 'attr': {'placeholder':'Enter you phn number ','class':'form-control'} }) }}
+            {{ form_widget(form.user.password,{ 'attr': {'placeholder':'Enter you password '} }) }}
+            {#<button type="submit" class="btn btn-primary">Update!</button>#}
             <div class="hide">
                 {{ form_rest(form) }}
             </div>
@@ -39,18 +47,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- copyright -->
 
     <!-- //copyright -->
-    <ul class="colorlib-bubbles">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
+
 </div>
 <!-- //main -->
-{% endblock  %}</html>
+{% endblock  %}

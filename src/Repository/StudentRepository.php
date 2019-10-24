@@ -20,23 +20,23 @@ class StudentRepository extends ServiceEntityRepository
     }
 
 
-    public function findStudent()
+    public function findStudent($id)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
-        $qb->select('s.program','s.phone','s.age','s.gender','u.id','u.email','u.username')
-            ->from(Student::class, 's');
-        $qb->join('s.user ','u');
-//            ->('u on s.id=u.id');
-//            ->andWhere('A.type = :type')
-//            ->setParameter("token", $token)
-//            ->setParameter("type", $type);
-//        var_dump($qb->getQuery()->getResult());die;
-        $data = $qb->getQuery()->getResult();
+        $qb->select('s')
+            ->from('App:Student','s')
+//            ->join('s.user ','u')
+            ->andWhere('s.user = :id')
+            ->setParameters(array('id' => $id));
+//        var_dump($id);die;
+        $data = $qb->getQuery()->getOneOrNullResult();
+
         if(!empty($data))
         {
-            return $data[0];
+            return $data;
+        } else {
+            return null;
         }
-        else return null;
     }
 
 //

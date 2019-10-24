@@ -15,13 +15,15 @@ class AppStudentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
+
             ->remove('name',TextType::class)
             ->remove('email',EmailType::class)
             ->add('user', UserType::class)
-            ->add('age')
+            ->add('age',\Symfony\Component\Form\Extension\Core\Type\NumberType::class)
             ->add('program')
-            ->add('phone')
+            ->add('phone',\Symfony\Component\Form\Extension\Core\Type\IntegerType::class)
             ->remove('password',PasswordType::class)
             ->add('gender',TextType::class)
 

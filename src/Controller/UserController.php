@@ -36,7 +36,6 @@ class UserController extends Controller
 //            var_dump($form->getData());die;
 //            var_dump($form->getData());die;
             $this->saveData( $form->getData(),$request);
-
             return $this->redirectToRoute('login');
         }
         return $this->render('student/std_registration.html.twig', [
@@ -47,17 +46,10 @@ class UserController extends Controller
 
     public function viewUserDataAction(){
 
-
-        $user = $this->getDoctrine()->getManager()->getRepository( Student::class)->findStudent();
+          $id = $this->getUser();
+          $user = $this->getDoctrine()->getManager()->getRepository( Student::class)->findStudent($id);
+//          var_dump($user);die;
 //        var_dump($user);die;
-
-//        $arr=array();
-//
-//foreach ($user as $item)
-//{
-//    $arr = $item;
-
-//      }
         return $this->render('student/login.html.twig',array('data'=>$user));
 
     }
@@ -66,50 +58,64 @@ class UserController extends Controller
     public function saveData($form,$request)
     {
         $entityManager = $this->getDoctrine()->getManager();
-//        $userManager = $this->get('fos_user.util.user_manipulator');
-//        $user = $userManager->createUser();
-//        $user->setUsername($username);
-//        $user->setEmail($email);
-//        $user->setPlainPassword($password);
-//        $user->setEnabled((bool) $active);
-//        $user->setSuperAdmin((bool) $superadmin);
 
 
-        $user = new User();
-//        var_dump($form->getUser()->getpassword());die;
-//        $pass = $this->get(UserPasswordEncoder::class)->encodePassword(12345);
-
+        $user = new User();;
         $passwordEncoder = $this->container->get('security.password_encoder');
         $pass =  $passwordEncoder->encodePassword($user,$form->getUser()->getpassword() );
-
         $user->setUsername($form->getUser()->getEmail());
         $user->setEmail($form->getUser()->getEmail());
         $user->setPassword($pass);
-//        $this->get(UserManager::class)
         $user->setRoles(array('Student'));
         $user->setEnabled(1);
         $entityManager->persist($user);
         $entityManager->flush();
-
-//        $userManager->updateUser($user);
-
-//        $event = new UserEvent($user, $request);
-//        $this->get('debug.event_dispatcher')->dispatch(FOSUserEvents::USER_CREATED, $event);
-
-//        var_dump($user->getId());die;
-//        var_dump(($form->getUser()->getid()));die;
-
         $student= new Student();
         $student->setProgram($form->getProgram());
         $student->setAge($form->getAge());
         $student->setGender($form->getGender());
         $student->setPhone($form->getPhone());
         $student->setUser($user);
-//        var_dump($student);die;
-//        var_dump();die;
         $entityManager->persist($student);
         $entityManager->flush();
         return $student;
+
+    }
+
+    public  function updateStudent( Request $request ){
+
+
+
+
+        $id = $this->getUser()->getid();
+        $em=$this->getDoctrine()->getManager();
+        $student=$em->getRepository(Student::class)->findOneBy(['user'=>$id]);
+        $form=$this->createForm(StudentType  ::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $article = $request->request->all();
+            $studentdata = $student;
+            $studentdata->setAge($article['student']['age']);
+            $studentdata->setProgram($article['student']['program']);
+            $studentdata->setPhone($article['student']['phone']);
+            $studentdata->setGender($article['student']['gender']);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($studentdata);
+            $entityManager->flush();
+            $this->addFlash('success', 'Your profile has been update');
+
+            return $this->redirectToRoute('login_student',array('data'=>$studentdata) );
+
+        }
+
+        return $this->render(
+            'student/Update_Student.html.twig',
+            array('student' => $form->createView())
+        );
+
+
+
+
 
     }
 }

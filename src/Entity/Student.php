@@ -17,7 +17,7 @@ class Student
      */
     private $id;
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="User")
+     * @ORM\OneToOne(targetEntity="App\Entity\User")
      */
     private $user;
 
@@ -32,7 +32,7 @@ class Student
     private $program;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $phone;
 
