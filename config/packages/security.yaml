@@ -21,7 +21,7 @@ security:
                 provider: fos_userbundle
 #                csrf_token_generator: security.csrf.token_manager
 #                csrf_token_id: a_private_string
-                default_target_path: /student
+                default_target_path: /userdashboard
 #                failure_path: login_failure_route_name
 
 

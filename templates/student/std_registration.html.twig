@@ -4,12 +4,17 @@
     {{ encore_entry_link_tags('app') }}
 
     <style>
-
+        .rig{
+            color: white;
+        }
         .std{
             width: fit-content;
             margin-left: 600px;
 
 
+        }
+        .form-control{
+            width: 500px;
         }
 
 
@@ -19,29 +24,39 @@
 <div class="main-w3layouts wrapper">
     <h1 class="std">student login </h1>
     <div class="main-agileinfo std" >
-        <div class="agileits-top" style="width: 50%;">
+        <div class="agileits-top " style="width: 50%;">
             {#{{ form(form) }}#}
 
             {{ form_start(form, {'method': 'post'}) }}
             {#{{ form_start(student) }}#}
-            {{ form_widget(form.user.username,{ 'attr': {'placeholder':'Enter you username ','class':'form-control'} }) }}
-            {{ form_widget(form.user.email,{ 'attr': {'placeholder':'Enter you email ','class':'form-control'} }) }}
+            <span>Enter your Name</span>
 
+            {{ form_widget(form.user.username,{ 'attr': {'placeholder':'Enter you username ','class':'form-control'} }) }}
+            <span>Enter your Email</span>
+
+            {{ form_widget(form.user.email,{ 'attr': {'placeholder':'Enter you email ','class':'form-control'} }) }}
+            <span>Select you Field</span>
+            {{ form_widget(form.user.roles,{ 'attr': {'placeholder':'Enter you Role ','class':'form-control' } }) }}
+            <span>Enter Your Age</span>
             {{ form_widget(form.age ,{ 'attr': {'placeholder':'age ','class':'form-control'} })}}
-            {{ form_widget(form.gender,{ 'attr': {'placeholder':'Enter your Gender ','class':'form-control'} }) }}
+            <span>Select Your Program</span>
             {{ form_widget(form.program,{ 'attr': {'placeholder':'Enter your program ','class':'form-control'} }) }}
+            <span>Enter Your Contact number</span>
             {{ form_widget(form.phone,{ 'attr': {'placeholder':'Enter you phn number ','class':'form-control'} }) }}
+            <span>Enter your Password</span>
             {{ form_widget(form.user.password,{ 'attr': {'placeholder':'Enter you password '} }) }}
+            <span>Select your gender</span>
+            {{ form_widget(form.gender,{ 'attr': {'placeholder':'Enter you password ' ,'class':'form-control'} }) }}
             {#<button type="submit" class="btn btn-primary">Update!</button>#}
             <div class="hide">
                 {{ form_rest(form) }}
             </div>
-            <div class="btn_box text-center clearfix">
+            <div class="btn_box text-center clearfix form-control">
                 <div id="spinner_wrap" data-spinner="spinner"></div>
                 <button type="submit" class="btn btn_green btn-block text-uppercase" href="javascript:void(0);">Sign up</button>
             </div>
             {{ form_end(form) }}
-            <p>Don't have an Account? <a href="{{ path('login') }}"> Login Now!</a></p>
+            <p>Don't have an Account? <a href="{{ path('login') }}"><span class="rig"> Login Now!</span></a></p>
         </div>
     </div>
     <!-- copyright -->

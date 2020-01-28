@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -14,6 +15,11 @@ class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $roles = array(
+            'Student'        => 'Role_Student',
+            'Academic'     => 'Role_Academic',
+            'Tutor'     => 'Role_Tutor'
+        );
         $builder
 
             ->add('username',TextType::class)
@@ -26,8 +32,16 @@ class UserType extends AbstractType
 //            ->add('lastLogin')
 //            ->add('confirmationToken')
 //            ->add('passwordRequestedAt')
-//            ->add('roles')
-        ;
+//            ->add('roles',TextType::class)
+//            ->add('roles', ChoiceType::class, array('required' => false, 'choices' => array('Role_Student' => 'Student', 'Role_Academic' => 'Academic', '' => 'Tutor')))
+            ->add('roles', ChoiceType::class, array(
+                'mapped' => false,
+                'required' => true,
+//                    'expanded'   => true,
+                    'choices' => $roles
+
+                )
+               );
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -20,7 +20,7 @@ class StudentRepository extends ServiceEntityRepository
     }
 
 
-    public function findStudent($id)
+    public function findUsers($id)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
         $qb->select('s')
@@ -28,8 +28,7 @@ class StudentRepository extends ServiceEntityRepository
 //            ->join('s.user ','u')
             ->andWhere('s.user = :id')
             ->setParameters(array('id' => $id));
-//        var_dump($id);die;
-        $data = $qb->getQuery()->getOneOrNullResult();
+         $data = $qb->getQuery()->getOneOrNullResult();
 
         if(!empty($data))
         {

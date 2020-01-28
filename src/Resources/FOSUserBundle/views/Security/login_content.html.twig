@@ -1,10 +1,38 @@
 {% trans_default_domain 'FOSUserBundle' %}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
 
+    <style>
+        .signup{
+
+            color: yellow;
+        }
+        .std{
+            width: fit-content;
+            /*margin-left: 350px;*/
+
+            margin-top: 200px;
+            margin-left: 600px;
+            margin-right: 700px;
+
+
+
+        }
+        .error{
+            margin-top: 10px;
+            color: tomato;
+            width: fit-content;
+            margin-left: 600px;
+            margin-right: 700px;
+        }
+
+    </style>
+{% endblock %}
 {% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    <div class="error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
-
-<form action="{{ path("fos_user_security_check") }}" method="post">
+<div class="std">
+<form action="{{ path("fos_user_security_check") }}" method="post" >
     {% if csrf_token %}
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
     {% endif %}
@@ -15,8 +43,10 @@
     <label for="password">{{ 'security.login.password'|trans }}</label>
     <input type="password" id="password" name="_password" required="required" autocomplete="current-password" />
 
-    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+    {#<input type="checkbox" id="remember_me" name="_remember_me" value="on" />#}
+    {#<label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>#}
+    <p>Don't have an Account? <a href="{{ path('student_registration') }}"> <span class="signup">Sign Up</span></a></p>
 
     <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
 </form>
+</div>

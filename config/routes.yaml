@@ -1,8 +1,8 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
-app_lucky_number:
-    path: /student-registration
+student_registration:
+    path: /registration
     controller: App\Controller\UserController::studentRigAction
 
 #view_data:
@@ -12,12 +12,19 @@ login:
     path: /login
     controller: App\Controller\SecurityController::login
     methods: GET|POST
+student_home:
+    path: /home
+    controller: App\Controller\UserController::homeAction
+    methods: GET|POST
 
 dashboard:
     path: /student-login/dashboard
     controller:  App\Controller\UserController::viewUserDataAction
 #    methods: GET|POST
 
+user_dashboard:
+    path: /userdashboard
+    controller: App\Controller\UserController::UserdashboardAction
 login_student:
     path: /student
     controller: App\Controller\UserController::viewUserDataAction
